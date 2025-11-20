@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Not Found</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: #000; /* pure black */
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* particle canvas sits behind everything */
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 0 0 10px #fff, 0 0 20px #ccc;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .back-btn {
+            margin-top: 25px;
+            padding: 12px 30px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: black;
+            box-shadow: 0 0 20px white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="particles"></canvas>
+
+    <div class="content">
+        <h1>404</h1>
+        <p>Page not found among the stars.</p>
+        <button class="back-btn" onclick="location.href='/'">Return Home</button>
+    </div>
+
+    <script>
+        // particle background
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+
+        let w, h;
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        const particles = [];
+        const count = 120; // number of stars
+
+        for (let i = 0; i < count; i++) {
+            particles.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                size: Math.random() * 2 + 1,
+                speed: Math.random() * 0.2 + 0.05 // slow movement
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+
+            ctx.fillStyle = "white";
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                p.y += p.speed;
+                if (p.y > h) {
+                    p.y = 0;
+                    p.x = Math.random() * w;
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+
+</body>
+</html>
