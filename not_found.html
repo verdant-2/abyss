@@ -11,7 +11,7 @@
             margin: 0;
             height: 100vh;
             overflow: hidden;
-            background: #000; /* pure black */
+            background: #000;
             color: #fff;
             font-family: Arial, sans-serif;
             display: flex;
@@ -20,7 +20,7 @@
             text-align: center;
         }
 
-        /* particle canvas sits behind everything */
+
         #particles {
             position: absolute;
             top: 0;
@@ -73,7 +73,7 @@
     </div>
 
     <script>
-        // particle background
+
         const canvas = document.getElementById("particles");
         const ctx = canvas.getContext("2d");
 
@@ -86,14 +86,14 @@
         resize();
 
         const particles = [];
-        const count = 120; // number of stars
+        const count = 120; 
 
         for (let i = 0; i < count; i++) {
             particles.push({
                 x: Math.random() * w,
                 y: Math.random() * h,
                 size: Math.random() * 2 + 1,
-                speed: Math.random() * 0.2 + 0.05 // slow movement
+                speed: Math.random() * 0.2 + 0.05 
             });
         }
 
@@ -121,3 +121,4 @@
 
 </body>
 </html>
+
